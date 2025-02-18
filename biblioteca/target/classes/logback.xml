@@ -1,0 +1,9 @@
+<configuration>
+    <logger name="org.hibernate" level="ERROR"/>
+    <logger name="org.mariadb" level="ERROR"/>
+    <logger name="org.springframework" level="ERROR"/>
+
+    <root level="ERROR">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

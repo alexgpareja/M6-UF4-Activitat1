@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <!-- Defineix la classe Reserva i la seva taula a la base de dades -->
+    <class name="com.alex_gil.model.Reserva" table="Reserva">
+        
+        <!-- Identificador únic de la reserva -->
+        <id name="idReserva" type="int" column="id_reserva">
+            <generator class="identity"/> <!-- Generació automàtica de l'ID -->
+        </id>
+
+        <!-- Data de reserva -->
+        <property name="dataReserva" type="timestamp" column="data_reserva" not-null="true"/>
+
+        <!-- Data de retorn -->
+        <property name="dataRetorn" type="timestamp" column="data_retorn"/>
+
+        <!-- Relació Many-to-One amb Usuari -->
+        <many-to-one name="usuari" class="com.alex_gil.model.Usuari" column="usuari_id" not-null="true" fetch="join"/>
+
+        <!-- Relació One-to-Many amb Llibre -->
+        <set name="llibres" cascade="all" inverse="true" lazy="false" fetch="join">
+            <key column="reserva_id"/>
+            <one-to-many class="com.alex_gil.model.Llibre"/>
+        </set>
+    </class>
+</hibernate-mapping>

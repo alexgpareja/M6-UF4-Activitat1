@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Configuració de la connexió a la base de dades -->
+
+        <!-- Driver JDBC per a MariaDB -->
+        <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
+
+        <!-- URL de connexió. S'afegeix ?createDatabaseIfNotExist=true per crear la base de dades si no existeix -->
+        <property name="connection.url">jdbc:mariadb://localhost:3306/biblioteca?createDatabaseIfNotExist=true</property>
+
+        <!-- Credencials d'accés a la base de dades -->
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+
+        <!-- Dialecte SQL per a la compatibilitat amb MariaDB -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Configuració del pool de connexions JDBC (nombre màxim de connexions) -->
+        <property name="connection.pool_size">5</property>
+
+        <!-- Configuració perquè cada fil tingui una sessió independent -->
+        <property name="current_session_context_class">thread</property>
+
+        <!-- Mostra les consultes SQL executades a la consola (útil per a depuració) -->
+        <property name="show_sql">true</property>
+
+        <!-- Estratègia de gestió de l'esquema de la base de dades -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <!-- Opcions possibles per a hbm2ddl.auto:
+            - create : Esborra i torna a crear la base de dades en cada execució
+            - update : Manté les dades i actualitza l'estructura de la base de dades si hi ha canvis
+            - create-drop : Crea tot i elimina la base de dades quan finalitza el programa
+            - validate : Comprova que les especificacions del mapeig siguin correctes sense modificar la base de dades
+        -->
+
+        <!-- Mapeig de les entitats amb anotacions -->
+        <mapping class="com.alex_gil.model.Llibre"/>
+        <mapping class="com.alex_gil.model.Categoria"/>
+        <mapping class="com.alex_gil.model.Usuari"/>
+        
+        <!-- Mapeig mitjançant arxius XML -->
+        <mapping resource="reserva.hbm.xml"/>
+      
+    </session-factory>
+</hibernate-configuration>
