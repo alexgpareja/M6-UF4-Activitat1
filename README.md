@@ -187,6 +187,7 @@ classDiagram
 ```
 
 Explicació del diagrama:
+
 Categoria: Representa una categoria de llibres. Té una relació "one-to-many" amb Llibre, ja que una categoria pot contenir múltiples llibres.
 
 Llibre: Representa un llibre. Té una relació "many-to-one" amb Categoria i una relació "many-to-one" amb Reserva.
